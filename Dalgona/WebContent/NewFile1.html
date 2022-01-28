@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="EUC-KR">
+		<title>Insert title here</title>
+		<script>
+			
+		</script>
+	</head>
+	<body>
+		<form name="info" action="#" method="get">
+			<div class="section">
+			<input type="radio" name="slide" id="slide01" checked>
+			<input type="radio" name="slide" id="slide02" >
+			<input type="radio" name="slide" id="slide03" >
+			<input type="radio" name="slide" id="slide04" >
+			<style>
+				.section input[id*="slide"]{
+					display:none;
+				}
+				.section .slidewrap{
+					max-width:1280px;
+					margin:0 auto;
+					overflow:hidden;
+				}
+				.section .slidelist{
+					white-space:nowrap;	
+				}
+				.section .slidelist > li{
+					display:inline-block;
+					vertical-align:middle;
+					width:120%;
+					transition:all .5s;
+				}
+				.div{
+				}
+				.section .slidelist > li > a{
+					display:block;
+					position:relative;
+					left:24%;
+				}
+				.section .slidelist > li > a > div{
+					display:inline-block;
+					border:solid 1px;
+					width:500px;
+					height:900px;
+				}
+				.section .slidelist > li > a > p{
+					width:30px;
+					display:inline-block;
+					border:solid 1px;
+				}
+				.section .slidelist > li > a > label
+				{
+					position:absolute;
+					z-index:10;
+					top:50%;
+					transform:translateY(-50%);
+					padding:50px;
+					cursor:pointer;			
+				}
+				.section .slidelist .left{
+					left:-270px; 
+					background:url('left.png')center center / 100% no-repeat;
+				}
+				.section .slidelist .right{
+					right:715px;
+					background:url('right.png')center center / 100% no-repeat;
+				}
+				.section [id="slide01"]:checked ~ .slidewrap .slidelist > li {transform:translateX(0.4%);}
+				.section [id="slide02"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-100%);}
+				.section [id="slide03"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-200.3%);}
+				.section [id="slide04"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-300.3%);}
+				.section .slidelist > li > a >p{
+			
+				}
+				
+			</style>		
+			<div class="slidewrap" >
+				<ul class="slidelist">
+					<li>
+						<a >
+								<div>
+									<center>
+										<div style="border:none; height:50px"></div>
+										<div style="border:solid 1px; height:50px"><img src=""></div>
+										<div style="border:none; height:50px"></div>
+										<div>
+											<input type="text" name="id" placeholder="사용할 아이디" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div style="margin-right:270px; margin-top:10px">
+											<span >아이디 체크</span>
+										</div>
+										<div>
+											<input type="password" name="pw" placeholder="비밀번호" style="width:80%; height:50px; font-size:20px;margin-top:15px">
+										</div>
+										<div>
+											<input type="password" name="pwc" placeholder="비밀번호 확인" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div style="margin-right:270px; margin-top:10px">
+											<span >비밀번호 체크</span>
+										</div>
+										<div>
+											<input type="text" name="carno" placeholder="차량번호" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+									</center>
+								</div>
+							<label for="slide02" class="right"></label>
+						</a>
+					</li>
+					<li>
+						<a>
+							<label for="slide01" class="left" ></label>
+								<div>
+									<center>
+										<div>
+											<input type="text" name="kr" placeholder="이름(국문)" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="cc" placeholder="이름(한문)" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="rrn" placeholder="주민등록번호" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="gender" placeholder="성별" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="address" placeholder="주소" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="kidney" placeholder="신장" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="weight" placeholder="체중" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="vision" placeholder="시력" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="btype" placeholder="혈액형" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="blind" placeholder="색맹" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="file" style="font-size:20px;margin-top:25px">
+										</div>
+									</center>
+								</div>
+							<label for="slide03" class="right"></label>
+						</a>
+					</li> 
+					<li>
+						<a>
+							<label for="slide02" class="left" ></label>
+								<div>
+									<center>
+										<div>
+											<input type="text" name="es" placeholder="초등학교" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="ms" placeholder="중학교" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="hs" placeholder="고등학교" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="us" placeholder="대학교" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="gs" placeholder="대학원" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="career1" placeholder="경력1" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="career2" placeholder="경력2" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="career3" placeholder="경력3" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="license1" placeholder="자격증1" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="license2" placeholder="자격증2" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="license3" placeholder="자격증3" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+									</center>
+								</div>
+							<label for="slide04" class="right"></label>
+						</a>
+					</li> 
+					<li>
+						<a>
+							<label for="slide03" class="left" ></label>
+								<div>
+									<center>
+										<div>
+											<input type="text" name="startdate" placeholder="입사일" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="spot" placeholder="직위" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="position" placeholder="직책" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="text" name="occupation" placeholder="직종" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+										</div>
+										<div>
+											<input type="submit" value="작성완료" style="font-size:20px;background-color:#4A8AF4;margin-top:50px; width:350px;height:70px;">
+										</div>
+										
+									</center>
+								</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</form>
+	</body>
+</html>
