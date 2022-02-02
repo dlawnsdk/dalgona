@@ -5,8 +5,9 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+
 		<style>
-			#scroll{
+#scroll{
 	overflow:auto;
 	display:block; 
 	width:100%; 
@@ -16,9 +17,9 @@
 .scroll::-webkit-scrollbar{
 	
 	width:0px;
+	height:0px;
 	background-color: #BFCBD1;
 	border-radius:10px;
-	
 }
 .scroll::-webkit-scrollbar-thumb{
 	background-color: #35517C;
@@ -28,7 +29,7 @@
 	</head>
 	<body>
 	<div id="scroll" class="scroll" style="border:none">
-		<div style="width:97%; ">
+		<div>
 			<div style="display:fixed">
 				<input type="button" value="초대" style="width:100px">
 			</div>

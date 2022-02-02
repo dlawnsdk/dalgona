@@ -5,6 +5,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Insert title here</title>
+	
 		<script src="jquery-3.6.0.js"></script>
 		<style>
 			div{			
@@ -25,21 +26,24 @@
 	          {
 				  divBG.style.display = "block";
 	        	  divModal.style.display = "block";
+	        	  $('.modal').animate({width:150}, 170);
 			  });  
 	          
 	          allBG.addEventListener('click', () => 
 	          {
 				  divBG.style.display = "none";
 	        	  divModal.style.display = "none";
+	        	  $('.modal').animate({width:0});
 			  });
 	      });
+	 	 
  	  </script>
  	   <style>
 	       .modal {
 			  position:absolute;
 			  top: 50px;;
 			  left: 10px;
-	          width: 150px;
+	          width: 0px;
 	          height: 550px;				
 		      text-align: center;
 		      background-color: rgb(255, 255, 255);
@@ -72,9 +76,10 @@
 			<a href="#" class="btn-open-popup"><img style="width:50%; margin-top:10%" src="more.png"></a>
 		    <div class="allBG" id="divBG"></div>   
 			<div class="modal" id="divModal"><%@ include file="invide.jsp" %></div>
-			
+
 			<img style="width:5%; height:40%;margin-top:10px; margin-left: 270px"src="close.png">				
 		</div>
+		
 		<div style=" width:100%; height: 92%; display:flex; align-items:center; flex-direction:column">			
 			<div id="chatbang" style="width:80%; height:100px;margin-top:20px; cursor: pointer;" onclick="location.href='chatview.html'">
 				채팅방				
