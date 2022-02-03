@@ -15,10 +15,12 @@
 			 		$('#work').css('display','none');
 			 		$('#foot').css('display','none');
 			 		$('#staffmanage').css('display','');
+			 		$('#staffmanageA').css('display','');
 			 	}
 			 	function main(){  
 			 		$('#plan').css('display','none');
 			 		$('#staffmanage').css('display','none');
+			 		$('#staffmanageA').css('display','none');
 			 		$('#work').css('display','none');
 			 		$('#foot').css('display','');
 			 		$('#mainview').css('display','');
@@ -26,6 +28,7 @@
 			 	function work(){  
 			 		$('#plan').css('display','none');
 			 		$('#staffmanage').css('display','none');
+			 		$('#staffmanageA').css('display','none');
 			 		$('#mainview').css('display','none');
 			 		$('#foot').css('display','none');
 			 		$('#work').css('display','');
@@ -33,6 +36,7 @@
 			 	function plan(){  
 			 		$('#work').css('display','none');
 			 		$('#staffmanage').css('display','none');
+			 		$('#staffmanageA').css('display','none');
 			 		$('#foot').css('display','none');
 			 		$('#mainview').css('display','none');
 			 		$('#plan').css('display','');
@@ -74,13 +78,9 @@
 		<div style="width:1280px; height:720px; border:solid 1px;">
 			<div  style="width:250px; height:720px; display:inline-block; border:solid 1px;">
 				<div style="width:250px; height:250px; background-color:skyblue;"></div>
+				<!-- 사용자 정보 -->
 				<div style="background-color:red; height:475px;">
-					<table border="1">
-						<tr>
-							<td colspan="2">
-									<input type="text"><input type="button" value="검색" onclick="search();">
-							</td>
-						</tr>
+					<table border="1">						
 						<tr>
 							<td>사원 정보</td>
 							<td>
@@ -121,28 +121,35 @@
 							<td>번호</td>
 							<td>번호입니다.</td>
 						</tr>
-					</table>
-					<table border="1" style="margin-top:20px;">
-						<tr><td colspan="2">연차정보</td></tr>
 						<tr>
-							<td>남은 갯수</td>
-							<td>남은 갯수 입니다.</td>
+							<td id="staff" colspan="2">
+								<input style="background-color:#4B8BF4" type="button" value="인사카드" onclick="staffcard()">
+							</td>
 						</tr>
-						<tr>
-							<td>총 갯수</td>
-							<td>총 갯수 입니다.</td>
-						</tr>
-					</table>
+					</table>										
 				</div>
+				<!-- 사용자 정보 -->
 			</div>
-				<div  style="width:1023px; height:720px; display:inline-block; float:right; background-color:skyblue; border:solid 1px;">
+				<div  style="width:1000px; height:720px; display:inline-block; float:right; background-color:skyblue; border:solid 1px;">
 					<button style="width:100px; height:35px; margin-top:10px; margin-left:60px; background-color:red;" onclick="main();">메인화면</button>
 					<button style="width:100px; height:35px; margin-top:10px; margin-left:60px; background-color:red;" onclick="work();">출퇴근관리</button>
 					<button style="width:100px; height:35px; margin-top:10px; margin-left:60px; background-color:red;" onclick="plan();">일정표</button>
 					<button style="width:100px; height:35px; margin-top:10px; margin-left:60px; background-color:red;" onclick="staff();">사원리스트</button>
-
+					<table style=" display:none; width:100%; height:50px" id="staffmanageA">
+						<tr>
+							<td style="text-align:left">
+								<select>
+									<option>부서정보</option>
+								</select>
+							</td>
+							<td style="text-align:right">
+								<input type="button" value="수정">
+								<input type="button" value="삭제">
+							</td>
+						</tr>
+					</table>
 					<!----------------------- 사원리스트 태그 ------------------------->
-					<table border="1" style="width:1000px; display:none" id="staffmanage">
+					<table border="1" style="width:100%; display:none" id="staffmanage">
 						<tr>
 							<td>
 								부서
@@ -194,9 +201,18 @@
 							<td>
 								법무부
 							</td>
+							<!-- 인증시 출력 -->
 							<td>
 								사원
 							</td>
+							<!-- 인증시 출력 -->
+							
+							<!-- 미인증시 출력 -->
+							<td colspan="2" style="display:none">
+								<button>코드발급</button>
+							</td>
+							<!-- 미인증시 출력 -->
+							
 							<td>
 								최형빈
 							</td>
@@ -217,7 +233,7 @@
 					<!----------------------- 사원리스트 태그 ------------------------->
 					
 					<!----------------------- 출퇴근 태그 ------------------------->
-					<table border="1" style="width:1000px; display:none" id="work">
+					<table border="1" style="width:100%; display:none" id="work">
 						<tr>
 							<td>
 								이름
@@ -259,7 +275,7 @@
 					<!----------------------- 출퇴근 태그 ------------------------->
 					
 					<!----------------------- 일정표 태그 ------------------------->
-					<table border="1" style="width:1000px; display:none" id="plan">
+					<table border="1" style="width:100%; display:none" id="plan">
 						<tr>
 							<td>
 								스케출 관리 페이지
@@ -268,11 +284,12 @@
 					</table>
 					<!----------------------- 일정표 태그 ------------------------->
 				
-				
+				<!-- 일정표 -->
 				<div id="foot">
 					<div style="width:600px; height:400px; margin-top:25px; margin-left:45px; background-color:green; display:inline-block;">일정표 입니다.</div>
-					<div style="width:300px; height:400px; margin-top:25px; margin-right:45px; background-color:blue;  display:inline-block; float:right; ">일정표 리스트 입니다.</div>
+					<div style="width:300px; height:400px; margin-top:25px; margin-right:45px; background-color:blue; display:inline-block; float:right; ">일정표 리스트 입니다.</div>
 				</div>
+				<!-- 일정표 -->
 			</div>				
 			</div>
 	</body>

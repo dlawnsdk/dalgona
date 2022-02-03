@@ -3,9 +3,7 @@
 	<head>
 		<meta charset="EUC-KR">
 		<title>Insert title here</title>
-		<script>
-			
-		</script>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	</head>
 	<body>
 		<form name="info" action="#" method="get">
@@ -76,6 +74,57 @@
 				}
 				
 			</style>		
+			<script>
+		    function sample6_execDaumPostcode() {
+		        new daum.Postcode({
+		            oncomplete: function(data) {
+		                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+
+		                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+		                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+		                var addr = ''; // 주소 변수
+		                var extraAddr = ''; // 참고항목 변수
+
+		                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+		                //0 == '0' => true
+		                //0 === '0' => false(형식도 판별)
+		                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+		                    addr = data.roadAddress;
+		                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+		                    addr = data.jibunAddress;
+		                }
+
+		                // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
+		                if(data.userSelectedType === 'R'){
+		                    // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+		                    // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+		                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+		                        extraAddr += data.bname;
+		                    }
+		                    // 건물명이 있고, 공동주택일 경우 추가한다.
+		                    if(data.buildingName !== '' && data.apartment === 'Y'){
+		                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+		                    }
+		                    // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+		                    if(extraAddr !== ''){
+		                        extraAddr = ' (' + extraAddr + ')';
+		                    }
+		                    // 조합된 참고항목을 해당 필드에 넣는다.
+		                    document.getElementById("sample6_extraAddress").value = extraAddr;
+		                
+		                } else {
+		                    document.getElementById("sample6_extraAddress").value = '';
+		                }
+
+		                // 우편번호와 주소 정보를 해당 필드에 넣는다.
+		                document.getElementById('sample6_postcode').value = data.zonecode;
+		                document.getElementById("sample6_address").value = addr;
+		                // 커서를 상세주소 필드로 이동한다.
+		                document.getElementById("sample6_detailAddress").focus();
+		            }
+		        }).open();
+		    }
+			</script>
 			<div class="slidewrap" >
 				<ul class="slidelist">
 					<li>
@@ -126,25 +175,25 @@
 											<input type="text" name="gender" placeholder="성별" style="width:80%; height:50px; font-size:20px;margin-top:25px">
 										</div>
 										<div>
-											<input type="text" name="address" placeholder="주소" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+											<div>
+												<input type="text" id="sample6_postcode" placeholder="우편번호" style="height:30px; width:60%; margin-top:25px; font-size:20pxfont-size:20px">
+												<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" style="width:20%"><br>
+											</div>										
+											<div>
+												<input type="text" id="sample6_address" placeholder="주소"style="height:30px; width:60%; margin-top:25px; font-size:20pxfont-size:20px"><br>
+											</div>
+											<div>
+												<input type="text" id="sample6_detailAddress" placeholder="상세주소"style="height:30px; width:60%; margin-top:25px; font-size:20pxfont-size:20px">
+											</div>
+											<div>
+												<input type="text" id="sample6_extraAddress" placeholder="참고항목"style="height:30px; width:60%; margin-top:25px; font-size:20pxfont-size:20px">
+											</div>
 										</div>
 										<div>
 											<input type="text" name="kidney" placeholder="신장" style="width:80%; height:50px; font-size:20px;margin-top:25px">
 										</div>
 										<div>
 											<input type="text" name="weight" placeholder="체중" style="width:80%; height:50px; font-size:20px;margin-top:25px">
-										</div>
-										<div>
-											<input type="text" name="vision" placeholder="시력" style="width:80%; height:50px; font-size:20px;margin-top:25px">
-										</div>
-										<div>
-											<input type="text" name="btype" placeholder="혈액형" style="width:80%; height:50px; font-size:20px;margin-top:25px">
-										</div>
-										<div>
-											<input type="text" name="blind" placeholder="색맹" style="width:80%; height:50px; font-size:20px;margin-top:25px">
-										</div>
-										<div>
-											<input type="file" style="font-size:20px;margin-top:25px">
 										</div>
 									</center>
 								</div>
@@ -157,19 +206,19 @@
 								<div>
 									<center>
 										<div>
-											<input type="text" name="es" placeholder="초등학교" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+											<input type="text" name="vision" placeholder="시력" style="width:80%; height:50px; font-size:20px;margin-top:25px">
 										</div>
 										<div>
-											<input type="text" name="ms" placeholder="중학교" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+											<input type="text" name="btype" placeholder="혈액형" style="width:80%; height:50px; font-size:20px;margin-top:25px">
 										</div>
 										<div>
-											<input type="text" name="hs" placeholder="고등학교" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+											<input type="text" name="blind" placeholder="색맹" style="width:80%; height:50px; font-size:20px;margin-top:25px">
 										</div>
 										<div>
-											<input type="text" name="us" placeholder="대학교" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+											<input type="file" style="font-size:20px;margin-top:25px">
 										</div>
 										<div>
-											<input type="text" name="gs" placeholder="대학원" style="width:80%; height:50px; font-size:20px;margin-top:25px">
+											<input type="text" name="us" placeholder="최종학력" style="width:80%; height:50px; font-size:20px;margin-top:25px">
 										</div>
 										<div>
 											<input type="text" name="career1" placeholder="경력1" style="width:80%; height:50px; font-size:20px;margin-top:25px">
@@ -178,47 +227,17 @@
 											<input type="text" name="career2" placeholder="경력2" style="width:80%; height:50px; font-size:20px;margin-top:25px">
 										</div>
 										<div>
-											<input type="text" name="career3" placeholder="경력3" style="width:80%; height:50px; font-size:20px;margin-top:25px">
-										</div>
-										<div>
 											<input type="text" name="license1" placeholder="자격증1" style="width:80%; height:50px; font-size:20px;margin-top:25px">
 										</div>
 										<div>
 											<input type="text" name="license2" placeholder="자격증2" style="width:80%; height:50px; font-size:20px;margin-top:25px">
 										</div>
 										<div>
-											<input type="text" name="license3" placeholder="자격증3" style="width:80%; height:50px; font-size:20px;margin-top:25px">
-										</div>
-									</center>
-								</div>
-							<label for="slide04" class="right"></label>
-						</a>
-					</li> 
-					<li>
-						<a>
-							<label for="slide03" class="left" ></label>
-								<div>
-									<center>
-										<div>
-											<input type="text" name="startdate" placeholder="입사일" style="width:80%; height:50px; font-size:20px;margin-top:25px">
-										</div>
-										<div>
-											<input type="text" name="spot" placeholder="직위" style="width:80%; height:50px; font-size:20px;margin-top:25px">
-										</div>
-										<div>
-											<input type="text" name="position" placeholder="직책" style="width:80%; height:50px; font-size:20px;margin-top:25px">
-										</div>
-										<div>
-											<input type="text" name="occupation" placeholder="직종" style="width:80%; height:50px; font-size:20px;margin-top:25px">
-										</div>
-										<div>
 											<input type="submit" value="작성완료" style="font-size:20px;background-color:#4A8AF4;margin-top:50px; width:350px;height:70px;">
 										</div>
-										
 									</center>
 								</div>
-						</a>
-					</li>
+					</li> 					
 				</ul>
 			</div>
 		</div>
